@@ -1,11 +1,22 @@
+# Some defaults that might not have been set by local makefile
+APP_NAME ?= "APP_NAME"
+VERSION ?= "0.0.0"
+#PACKAGING ?= deb
+
+define dircheck
+	@test -d $1 \
+	&& echo "[validate]\t\tFound $1; assuming this is $2." \
+	|| echo "[validate]\t\tCannot find $1; assuming this is not $2."
+endef
+
 pre-clean::
 clean:: pre-clean
-	rm -rf target
+	@echo "[clean]\t\t\tRemoving target dir..." && rm -rf target
 post-clean:: clean
 
 validate::
 initialize:: validate
-	mkdir -p target/classes
+	@echo "[initialize]\t\tCreating target/classes for processed and compiled sources." && mkdir -p target/classes
 generate-sources:: initialize
 process-sources:: generate-sources
 generate-resources:: process-sources

@@ -33,7 +33,7 @@ test:: process-test-classes
 prepare-package:: test
 package:: prepare-package
 pre-integration-test:: package
-integration-test:: pre-integration-test harvest
+integration-test:: pre-integration-test
 post-integration-test:: integration-test
 verify:: post-integration-test
 install:: verify

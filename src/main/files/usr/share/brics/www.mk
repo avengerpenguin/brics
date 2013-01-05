@@ -10,5 +10,5 @@ compile::
 prepare-package::
 	@test -d src/main/www \
 	&& mkdir -p target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/var/www \
-	&& rsync -a --delete --exclude *.pyc src/main/www/* target/$(PACKAGING)/$(APP_NAME)-$(VERSION) \
+	&& rsync -a --delete --exclude *.pyc src/main/www/* target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/var/www/ \
 	|| true

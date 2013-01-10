@@ -38,8 +38,12 @@ install::
 	@echo "[install]\t\t\tInstalling $(APP_NAME)-$(VERSION).deb into /usr/local/brics/repo/deb..." \
 		&& sudo mkdir -p /usr/local/brics/repo/deb \
 		&& sudo cp target/deb/$(APP_NAME)-$(VERSION).deb /usr/local/brics/repo/deb/ \
-		&& sudo dpkg-scanpackages /usr/local/brics/repo/deb/ /dev/null \
+		&& cd /usr/local/brics/repo \
+		&& sudo dpkg-scanpackages deb /dev/null \
 			| gzip \
-			| sudo tee /usr/local/brics/repo/deb/Packages.gz >/dev/null
+			| sudo tee deb/Packages.gz >/dev/null \
+		&& echo "[install]\t\t\tRunning aptitude to install ${APP_NAME} to latest version..." \
+		&& sudo aptitude --quiet=2 update \
+		&& sudo aptitude -q install $(APP_NAME) --allow-untrusted
 
 endif

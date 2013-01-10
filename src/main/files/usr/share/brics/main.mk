@@ -43,3 +43,10 @@ pre-site::
 site:: pre-site
 post-site:: site
 site-deploy:: post-site
+
+SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+include ${SELF_DIR}apache.mk
+include ${SELF_DIR}deb.mk
+include ${SELF_DIR}www.mk
+include ${SELF_DIR}lettuce.mk
+include ${SELF_DIR}django.mk

@@ -9,7 +9,7 @@ integration-test::
 	&& echo "[integration-test] Detected Django project in target/classes; attempting to run Lettuce" \
 	&& echo "[integration-test] Purging old ${DJANGO_TEST_DB} just in case..." \
 	&& rm -f ${DJANGO_TEST_DB} \
-	cd target/classes \
+	&& cd target/classes \
 	&& echo "[integration-test] Running syncdb using settings.harvest..." \
 	&& python manage.py syncdb --noinput --settings=$(APP_NAME).settings.harvest \
 	&& echo "[integration-test] Loading fixtures..." \

@@ -15,9 +15,9 @@ clean:: pre-clean
 post-clean:: clean
 
 validate::
-initialize:: validate
+initialise:: validate
 	@echo "[initialize]\t\tCreating target/classes for processed and compiled sources." && mkdir -p target/classes
-generate-sources:: initialize
+generate-sources:: initialise
 process-sources:: generate-sources
 generate-resources:: process-sources
 process-resources:: generate-resources

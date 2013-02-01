@@ -115,7 +115,9 @@ validate::
 
 prepare-package::
 	@echo "[prepare-package]\tCreating init script:" \
-	&& echo "$$DJANGO_INIT_SCRIPT" | tee target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/etc/init.d/${APP_NAME}
+	&& mkdir -p target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/etc/init.d \
+	&& echo "$$DJANGO_INIT_SCRIPT"
+		| tee target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/etc/init.d/${APP_NAME}
 
 
 endif

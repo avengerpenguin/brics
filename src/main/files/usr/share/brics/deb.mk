@@ -44,6 +44,16 @@ install::
 			| sudo tee deb/Packages.gz >/dev/null \
 		&& echo "[install]\t\tRunning aptitude to install ${APP_NAME} to latest version..." \
 		&& sudo aptitude --quiet=2 update \
-		&& sudo aptitude -q install $(APP_NAME) --allow-untrusted
+		&& sudo aptitude -q reinstall $(APP_NAME) --allow-untrusted
 
+endif
+
+ifdef DEB_DEPENDS
+initialise::
+	@echo "[initialise]:\t\tInstalling deb dependencies: ${DEB_DEPENDS}" \
+	&& sudo aptitude --quiet=2 update \
+	&& sudo aptitude -q install ${DEB_DEPENDS}
+else
+validate::
+	@echo "[validate]:\t\tNot installing any dependencies as DEB_DEPENDS is not set."
 endif

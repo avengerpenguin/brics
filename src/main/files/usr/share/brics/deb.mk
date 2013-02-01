@@ -53,6 +53,10 @@ initialise::
 	@echo "[initialise]:\t\tInstalling deb dependencies: ${DEB_DEPENDS}" \
 	&& sudo aptitude --quiet=2 update \
 	&& sudo aptitude -q install ${DEB_DEPENDS}
+
+prepare-package::
+	@echo "[prepare-package]:\tAdding Depends: ${DEB_DEPENDS}" \
+	&& echo "Depends: ${DEB_DEPENDS}" >>target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/DEBIAN/control
 else
 validate::
 	@echo "[validate]:\t\tNot installing any dependencies as DEB_DEPENDS is not set."

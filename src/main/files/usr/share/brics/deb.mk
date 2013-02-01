@@ -43,8 +43,8 @@ install::
 			| gzip \
 			| sudo tee deb/Packages.gz >/dev/null \
 		&& echo "[install]\t\tRunning aptitude to install ${APP_NAME} to latest version..." \
-		&& sudo aptitude --quiet=2 update #\
-#		&& sudo aptitude -q reinstall $(APP_NAME) --allow-untrusted
+		&& sudo aptitude --quiet=2 update \
+		&& sudo aptitude -q reinstall $(APP_NAME) --allow-untrusted
 
 endif
 
@@ -54,9 +54,15 @@ initialise::
 	&& sudo aptitude --quiet=2 update \
 	&& sudo aptitude -q install ${DEB_DEPENDS}
 
+comma:= ,
+empty:=
+space:= $(empty) $(empty)
+
+DEBIAN_DEPS := $(subst $(space),$(comma),$(DEB_DEPENDS))
+
 prepare-package::
-	@echo "[prepare-package]:\tAdding Depends: ${DEB_DEPENDS}" \
-	&& echo "Depends: ${DEB_DEPENDS}" >>target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/DEBIAN/control
+	@echo "[prepare-package]:\tAdding Depends: ${DEBIAN_DEPS}" \
+	&& echo "Depends: ${DEBIAN_DEPS}" >>target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/DEBIAN/control
 else
 validate::
 	@echo "[validate]:\t\tNot installing any dependencies as DEB_DEPENDS is not set."

@@ -16,7 +16,7 @@ post-clean:: clean
 
 validate::
 initialise:: validate
-	@echo "[initialize]\t\tCreating target/classes for processed and compiled sources." && mkdir -p target/classes
+	@echo "[initialise]\t\tCreating target/classes for processed and compiled sources." && mkdir -p target/classes
 generate-sources:: initialise
 process-sources:: generate-sources
 generate-resources:: process-sources

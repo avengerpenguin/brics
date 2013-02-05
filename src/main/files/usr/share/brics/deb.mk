@@ -46,7 +46,6 @@ install::
 		&& sudo aptitude --quiet=2 update \
 		&& sudo aptitude -q reinstall $(APP_NAME) --allow-untrusted
 
-endif
 
 ifdef DEB_DEPENDS
 initialise::
@@ -66,4 +65,16 @@ prepare-package::
 else
 validate::
 	@echo "[validate]:\t\tNot installing any dependencies as DEB_DEPENDS is not set."
+endif
+
+ifdef APT_REPO_PATH
+deploy::
+	@echo "[deploy]:\t\tCopying $(APP_NAME)-$(VERSION).deb to location given in APT_REPO_PATH" \
+	&& scp target/deb/$(APP_NAME)-$(VERSION).deb ${APT_REPO_PATH}
+else
+deploy::
+	@echo "[deploy]:\t\tNot deploying deb package as APT_REPO_PATH is not set."
+endif
+
+# End of "if PACKAGING is deb"
 endif

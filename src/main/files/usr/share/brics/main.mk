@@ -1,6 +1,9 @@
 # Some defaults that might not have been set by local makefile
 APP_NAME ?= "APP_NAME"
 VERSION ?= "0.0.0"
+ifdef BUILD_NUMBER
+VERSION = ${VERSION}-${BUILD_NUMBER}
+endif
 #PACKAGING ?= deb
 
 define dircheck

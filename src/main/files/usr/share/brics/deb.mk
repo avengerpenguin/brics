@@ -10,6 +10,7 @@ Section: misc
 Priority: optional
 Architecture: all
 Maintainer: Unknown <unknown@example.com>
+Description: ${DESCRIPTION}
 endef
 export control_file
 

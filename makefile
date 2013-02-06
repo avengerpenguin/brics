@@ -1,5 +1,5 @@
 APP_NAME = brics
-VERSION ?= 0.0.6
+VERSION ?= 0.0.7
 PACKAGING ?= deb
 DESCRIPTION = "Building blocks for a standardised Make build system."
 BRICS_PATH ?= /usr/share/brics/

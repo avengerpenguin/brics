@@ -53,3 +53,4 @@ include ${SELF_DIR}deb.mk
 include ${SELF_DIR}www.mk
 include ${SELF_DIR}lettuce.mk
 include ${SELF_DIR}django.mk
+include ${SELF_DIR}bintray.mk

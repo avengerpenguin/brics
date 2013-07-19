@@ -42,10 +42,10 @@ install::
 		&& cd /usr/local/brics/repo \
 		&& sudo dpkg-scanpackages deb /dev/null \
 			| gzip \
-			| sudo tee deb/Packages.gz >/dev/null \
-		&& echo "[install]\t\tRunning aptitude to install ${APP_NAME} to latest version..." \
-		&& sudo aptitude --quiet=2 update \
-		&& sudo aptitude -y -q reinstall $(APP_NAME) --allow-untrusted
+			| sudo tee deb/Packages.gz >/dev/null #\
+#		&& echo "[install]\t\tRunning aptitude to install ${APP_NAME} to latest version..." \
+#		&& sudo aptitude --quiet=2 update \
+#		&& sudo aptitude -y -q reinstall $(APP_NAME) --allow-untrusted
 
 
 ifdef DEB_DEPENDS

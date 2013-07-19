@@ -1,0 +1,8 @@
+env:
+  global:
+    - secure: "UJ6F+a/5hD5mQffJx7Kg+GTqIuPFoaCmF0+fZFBN2UNTlbrlSvhx3YMVJ+8k\nvqpNMBKukSEnujSZ7zWXl54LAhaGIWX2L6BlchWRgAJY+rE/f0MK/XWWw7ML\nPW//FLFnk//7eN+SQMjpsQrnwnHubr7Doo3YPKLyNRd8MYA8E2k="
+    - BINTRAY_USER=avengerpenguin
+    - BINTRAY_REPO=deb-unstable
+
+script: make deploy
+

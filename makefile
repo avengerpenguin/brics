@@ -1,5 +1,5 @@
 APP_NAME = brics
-VERSION ?= 0.1.1
+VERSION ?= 0.1.2
 PACKAGING ?= deb
 DESCRIPTION = "Building blocks for a standardised Make build system."
 

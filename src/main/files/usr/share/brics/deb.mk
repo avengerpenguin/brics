@@ -14,10 +14,28 @@ Description: ${DESCRIPTION}
 endef
 export control_file
 
-prepare-package:: 
-	@echo "[prepare-package]\tCreating packaging dir: ${PKG_DIR}" \
-		&& mkdir -p ${PKG_DIR}
+define config_file
+#!/bin/sh
 
+set -e
+
+. /usr/share/debconf/confmodule
+
+db_version 2.0
+
+endef
+export config_file
+
+initialise::
+	@echo "[initialise]\tCreating packaging dir: ${PKG_DIR}" \
+		&& mkdir -p ${PKG_DIR}/DEBIAN
+
+	@echo "[initialise]\tCreating stub config file in DEBIAN in case conf needs added later:" \
+		&& echo "\n------------------------\n$$config_file\n------------------------\n" \
+		&& echo "$$config_file" >target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/DEBIAN/config \
+		&& chmod 755 target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/DEBIAN/config
+
+prepare-package:: 
 	@test -d src/main/files \
 		&& echo "[prepare-package]\tCopying files from src/main/files to ${PKG_DIR}..." \
 		&& mkdir -p target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/DEBIAN \
@@ -28,6 +46,7 @@ prepare-package::
 	@echo "[prepare-package]\tCreating control file in DEBIAN with project settings:" \
 		&& echo "\n------------------------\n$$control_file\n------------------------\n" \
 		&& echo "$$control_file" >target/$(PACKAGING)/$(APP_NAME)-$(VERSION)/DEBIAN/control
+
 
 dpkg_cmd=dpkg-deb --build $(APP_NAME)-$(VERSION)
 package::
